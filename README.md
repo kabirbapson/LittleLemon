@@ -1,2 +1,0 @@
-# LittleLemon
-LittleLemon
