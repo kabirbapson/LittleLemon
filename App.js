@@ -5,12 +5,11 @@ import LittleLemonHeader from "./components/LittleLemonHeader";
 
 export default function App() {
   return (
-    <View  style={styles.container}>
-      <StatusBar  style="auto"  />
-      <View style={{flex:1, borderRadius:100}}>
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <View style={{ flex: 1, borderRadius: 100 }}>
         <LittleLemonHeader />
       </View>
-
 
       <View>
         <LittleLemonFooter />
