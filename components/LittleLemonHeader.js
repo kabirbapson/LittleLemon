@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 export default function LittleLemonHeader() {
   return (
-    <View style={{ backgroundColor: "#f4ce14" }}>
+    <View style={{ backgroundColor: "#EE9972" }}>
       <Text
         style={{
           alignSelf: "center",
