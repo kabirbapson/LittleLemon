@@ -33,7 +33,7 @@ const Login = ({ handleOnPress }) => {
       <TouchableHighlight
         underlayColor="red"
         // activeOpacity={0.5}
-        onPress={()=>{}}
+        onPress={() => {}}
         style={{
           backgroundColor: "#EE9972",
           margin: 20,
