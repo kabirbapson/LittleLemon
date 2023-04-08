@@ -9,6 +9,7 @@ import { MenuItems } from "./components/MenuItems";
 export default function App() {
   const [status, setStatus] = React.useState(true);
   return (
+    
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={{ flex: 1 }}>
