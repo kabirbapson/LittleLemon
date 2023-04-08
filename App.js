@@ -22,12 +22,16 @@ export default function App() {
         {status ? (
           <Login handleOnPress={() => setStatus(!status)} />
         ) : (
-          <Text style={{
-            padding: 40,
-            fontSize: 30,
-            color: '#EDEFEE',
-            textAlign: 'center',
-          }}>You are logged in!</Text>
+          <Text
+            style={{
+              padding: 40,
+              fontSize: 30,
+              color: "#EDEFEE",
+              textAlign: "center",
+            }}
+          >
+            You are logged in!
+          </Text>
         )}
       </View>
       <View>
