@@ -5,40 +5,30 @@ import LittleLemonFooter from "./components/LittleLemonFooter";
 import LittleLemonHeader from "./components/LittleLemonHeader";
 import Login from "./components/Login";
 import { MenuItems } from "./components/MenuItems";
-
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 export default function App() {
   const [status, setStatus] = React.useState(true);
+  const Stack = createNativeStackNavigator();
+
   return (
-    
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={{ flex: 1 }}>
-        <LittleLemonHeader />
-        {/* <MenuItems /> */}
-        <View style={{ alignItems: "center", margin: 10, padding: 10 }}>
-          <Text style={{ fontSize: 30, color: "#EDEFEE" }}>
-            Welcome to Little Lemon
-          </Text>
-        </View>
-        {status ? (
-          <Login handleOnPress={() => setStatus(!status)} />
-        ) : (
-          <Text
-            style={{
-              padding: 40,
-              fontSize: 30,
-              color: "#EDEFEE",
-              textAlign: "center",
-            }}
-          >
-            You are logged in!
-          </Text>
-        )}
-      </View>
-      <View>
-        <LittleLemonFooter />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          animation: "fade_from_bottom",
+          headerStyle: { backgroundColor: "red" },
+          headerTintColor: "white",
+         
+        }}
+      >
+        <Stack.Screen options={{ headerTitle: 'huy'}} name="Login" component={Login} />
+        <Stack.Screen
+          options={{ headerTitle: "vhv" }}
+          name="MenuItems"
+          component={MenuItems}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

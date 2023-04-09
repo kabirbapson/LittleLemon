@@ -8,7 +8,8 @@ import {
   View,
 } from "react-native";
 
-const Login = ({ handleOnPress }) => {
+const Login = ({ handleOnPress, navigation }) => {
+  console.log(navigation);
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
       <Text style={{ fontSize: 20, margin: 10, color: "#EDEFEE" }}>
@@ -34,7 +35,7 @@ const Login = ({ handleOnPress }) => {
       <TouchableHighlight
         underlayColor="red"
         // activeOpacity={0.5}
-        onPress={() => {}}
+        onPress={() => navigation.navigate('MenuItems')}
         style={{
           backgroundColor: "#EE9972",
           margin: 20,
