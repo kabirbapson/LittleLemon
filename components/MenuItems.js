@@ -55,7 +55,6 @@ const menuItemsToDisplay = [
   },
 ];
 
-console.log(menuItemsToDisplay);
 
 export const MenuItems = () => {
   return (

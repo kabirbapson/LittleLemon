@@ -8,8 +8,7 @@ import {
   View,
 } from "react-native";
 
-const Login = ({ handleOnPress, navigation }) => {
-  console.log(navigation);
+const Login = ({ handleOnPress,route, navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
       <Text style={{ fontSize: 20, margin: 10, color: "#EDEFEE" }}>
