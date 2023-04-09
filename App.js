@@ -42,10 +42,6 @@ export default function App() {
             return <Ionicons name={'airplane'} size={size} />;
           },
         })}
-        //     ? 'ios-information-circle'
-        //     : 'ios-information-circle-outline';
-        // } else if (route.name === 'Menu') {
-        //   iconName =  'ios-list';
       >
         <Tab.Screen name="Login" component={Login} />
         <Tab.Screen name="MenuItems" component={MenuItems} />
