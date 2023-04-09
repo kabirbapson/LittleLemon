@@ -32,14 +32,14 @@ export default function App() {
       </Stack.Navigator> */}
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ size }) => {
+          tabBarIcon: ({ size = '10',  }) => {
             let iconName;
             if (route.name === "Login") {
               iconName = "ios-information-circle";
-            } else  {
+            } else {
               iconName = "ios-list";
             }
-            return <Ionicons name={iconName} size={size} />;
+            return <Ionicons name={'airplane'} size={size} />;
           },
         })}
         //     ? 'ios-information-circle'
