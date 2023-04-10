@@ -9,43 +9,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import RootNavigator from "./navigators/RootNavigator";
 export default function App() {
   const [status, setStatus] = React.useState(true);
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      {/* <Stack.Navigator
-        screenOptions={{
-          animation: "fade_from_bottom",
-          headerStyle: { backgroundColor: "red" },
-          headerTintColor: "white",
-         
-        }}
-      >
-        <Stack.Screen options={{ headerTitle: 'huy'}} name="Login" component={Login} />
-        <Stack.Screen
-          options={{ headerTitle: "vhv" }}
-          name="MenuItems"
-          component={MenuItems}
-        />
-      </Stack.Navigator> */}
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ size = '10',  }) => {
-            let iconName;
-            if (route.name === "Login") {
-              iconName = "ios-information-circle";
-            } else {
-              iconName = "ios-list";
-            }
-            return <Ionicons name={'airplane'} size={size} />;
-          },
-        })}
-      >
-        <Tab.Screen name="Login" component={Login} />
-        <Tab.Screen name="MenuItems" component={MenuItems} />
-      </Tab.Navigator>
+     <RootNavigator />
     </NavigationContainer>
   );
 }
