@@ -1,14 +1,22 @@
 import * as React from "react";
-import { Alert, Button, Image, KeyboardAvoidingView, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Alert,
+  Button,
+  Image,
+  KeyboardAvoidingView,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { validateEmail } from "./../utils/index";
 const SubscribeScreen = () => {
   const [email, setEmail] = React.useState("");
   const isValid = validateEmail(email);
   // Add subscribe screen code here
   return (
-    <KeyboardAvoidingView behavior="padding"
-      style={styles.container}
-    >
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Image
         source={require("./../assets/little-lemon-logo-grey.png")}
         style={{ margin: 10, width: 200, height: 200, resizeMode: "contain" }}
@@ -25,7 +33,6 @@ const SubscribeScreen = () => {
         Subscribe to our newsletter for our latest delivious recipes!
       </Text>
       <TextInput
-        
         keyboardType="email-address"
         placeholder="Enter your email"
         value={email}
@@ -40,7 +47,7 @@ const SubscribeScreen = () => {
       />
       <Pressable
         disabled={!isValid}
-        onPress={() => Alert.alert('Thanks for subscribing, stay tuned!')}
+        onPress={() => Alert.alert("Thanks for subscribing, stay tuned!")}
         style={[
           {
             backgroundColor: "blue",
