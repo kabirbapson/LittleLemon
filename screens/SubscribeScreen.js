@@ -30,7 +30,6 @@ const SubscribeScreen = () => {
           padding: 10,
         }}
       >
-        
         Subscribe to our newsletter for our latest delivious recipes!
       </Text>
       <TextInput
