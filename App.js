@@ -17,26 +17,26 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import RootNavigator from "./navigators/RootNavigator";
+import hel from "./menuItems.json";
+
 export default function App() {
   const [status, setStatus] = React.useState(true);
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   const [data, setData] = useState([]);
-  const getMenuItems = async () => {
-    try {
-      const response = await fetch(
-        "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json"
-      );
-      const mydata = await response.json();
-      setData(mydata.menu);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getMenuItems();
-  });
 
+  // console.log(hel.hel);
+  console.log(
+    JSON.stringify({
+      name: "Meta User",
+      email: "mataUser@example.com",
+      password: "abc123$",
+    })
+  );
+  const json = '{"answered":true, "count":20}';
+  const obj = JSON.parse(json);
+
+  console.log(obj.count);
   // console.log(data);
   return (
     // <NavigationContainer>
@@ -44,9 +44,9 @@ export default function App() {
     // </NavigationContainer>
     <View
       style={{
-        width: "90%",
+        // width: "90%",
         flex: 1,
-        backgroundColor: "green",
+        backgroundColor: "#495E57",
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -55,19 +55,20 @@ export default function App() {
         <Text>fsjkgnfd</Text>
       </SafeAreaView>
       <FlatList
-        data={data}
+        data={hel.menu}
         renderItem={({ item }) => (
           <View
             style={{
-              backgroundColor: "red",
+              width: 400,
               flexDirection: "row",
-              padding: 10,
-              width: "100%",
-              alignItems: "flex-end",
+              justifyContent: "space-between",
+              marginVertical: 10,
             }}
           >
-            <Text>{item.title}</Text>
-            <Text>{item.price}</Text>
+            <Text style={{ fontSize: 30, color: "#F4CE14" }}>{item.title}</Text>
+            <Text style={{ fontSize: 30, color: "#F4CE14" }}>
+              ${item.price}
+            </Text>
           </View>
         )}
       />
