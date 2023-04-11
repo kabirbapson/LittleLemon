@@ -42,14 +42,30 @@ export default function App() {
     // <NavigationContainer>
     //  <RootNavigator />
     // </NavigationContainer>
-    <View style={{width:'90%',flex:1,backgroundColor:'green', alignItems: "center", justifyContent: "center" }}>
+    <View
+      style={{
+        width: "90%",
+        flex: 1,
+        backgroundColor: "green",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <SafeAreaView>
         <Text>fsjkgnfd</Text>
       </SafeAreaView>
       <FlatList
         data={data}
-        renderItem={({item}) => (
-          <View style={{backgroundColor:'red',flexDirection:'row', padding:10, width:'100%', alignItems:'flex-end',}}>
+        renderItem={({ item }) => (
+          <View
+            style={{
+              backgroundColor: "red",
+              flexDirection: "row",
+              padding: 10,
+              width: "100%",
+              alignItems: "flex-end",
+            }}
+          >
             <Text>{item.title}</Text>
             <Text>{item.price}</Text>
           </View>
