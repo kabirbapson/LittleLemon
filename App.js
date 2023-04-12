@@ -34,8 +34,6 @@ export default function App() {
     })
   );
 
-  
-
   const json = '{"answered":true, "count":20}';
   const obj = JSON.parse(json);
 
