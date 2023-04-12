@@ -25,6 +25,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
   const [data, setData] = useState([]);
 
+
   // console.log(hel.hel);
   console.log(
     JSON.stringify({
