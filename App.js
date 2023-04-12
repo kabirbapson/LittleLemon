@@ -25,7 +25,6 @@ export default function App() {
   const Tab = createBottomTabNavigator();
   const [data, setData] = useState([]);
 
-  
   // console.log(hel.hel);
   console.log(
     JSON.stringify({
@@ -34,8 +33,7 @@ export default function App() {
       password: "abc123$",
     })
   );
-  
-  
+
   const json = '{"answered":true, "count":20}';
   const obj = JSON.parse(json);
 
