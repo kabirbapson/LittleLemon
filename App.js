@@ -1,78 +1,52 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import LittleLemonFooter from "./components/LittleLemonFooter";
-import LittleLemonHeader from "./components/LittleLemonHeader";
-import Login from "./components/Login";
-import { MenuItems } from "./components/MenuItems";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import RootNavigator from "./navigators/RootNavigator";
-import hel from "./menuItems.json";
+import * as React from "react";
+import { Text, View, StyleSheet, Switch } from "react-native";
+import Constants from "expo-constants";
+// import { Switch } from 'react-native-paper';
 
 export default function App() {
-  const [status, setStatus] = React.useState(true);
-  const Stack = createNativeStackNavigator();
-  const Tab = createBottomTabNavigator();
-  const [data, setData] = useState([]);
+  const [preferences, setPreferences] = React.useState({
+    pushNotifications: false,
+    emailMarketing: false,
+    latestNews: false,
+  });
 
-  // console.log(hel.hel);
-  console.log(
-    JSON.stringify({
-      name: "Meta User",
-      email: "mataUser@example.com",
-      password: "abc123$",
-    })
-  );
-
-  const json = '{"answered":true, "count":20}';
-  const obj = JSON.parse(json);
-
-  console.log(obj.count);
-  // console.log(data);
+  // const updateState = (key) => () =>
+  //   setPreferences((prevState) => ({
+  //     ...prevState,
+  //     [key]: !prevState[key],
+  //   }));
+  const updateState = (key) =>
+    setPreferences({
+      ...preferences,
+      [key]: !preferences[key],
+    });
+  
+  
+console.log(preferences);
   return (
-    // <NavigationContainer>
-    //  <RootNavigator />
-    // </NavigationContainer>
-    <View
-      style={{
-        // width: "90%",
-        flex: 1,
-        backgroundColor: "#495E57",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <SafeAreaView>
-        <Text>fsjkgnfd</Text>
-      </SafeAreaView>
-      <FlatList
-        data={hel.menu}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              width: 400,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginVertical: 10,
-            }}
-          >
-            <Text style={{ fontSize: 30, color: "#F4CE14" }}>{item.title}</Text>
-            <Text style={{ fontSize: 30, color: "#F4CE14" }}>
-              ${item.price}
-            </Text>
-          </View>
-        )}
-      />
+    <View style={styles.container}>
+      <Text style={styles.header}>Account Preferences</Text>
+      <View style={styles.row}>
+        <Text>Push notifications</Text>
+        <Switch
+          value={preferences.pushNotifications}
+          onValueChange={()=>updateState('pushNotifications')}
+        />
+      </View>
+      <View style={styles.row}>
+        <Text>Marketing emails</Text>
+        <Switch
+          value={preferences.emailMarketing}
+          onValueChange={() => updateState("emailMarketing")}
+        />
+      </View>
+      <View style={styles.row}>
+        <Text>Latest news</Text>
+        <Switch
+          value={preferences.latestNews}
+          onValueChange={() => updateState("latestNews")}
+        />
+      </View>
     </View>
   );
 }
@@ -80,6 +54,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#ecf0f1",
+    padding: 16,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingVertical: 16,
+  },
+  header: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
