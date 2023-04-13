@@ -20,9 +20,8 @@ export default function App() {
       ...preferences,
       [key]: !preferences[key],
     });
-  
-  
-console.log(preferences);
+
+  console.log(preferences);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Account Preferences</Text>
@@ -30,7 +29,7 @@ console.log(preferences);
         <Text>Push notifications</Text>
         <Switch
           value={preferences.pushNotifications}
-          onValueChange={()=>updateState('pushNotifications')}
+          onValueChange={() => updateState("pushNotifications")}
         />
       </View>
       <View style={styles.row}>
