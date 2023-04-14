@@ -58,7 +58,6 @@ export default function App() {
     setCustomers([...customers, {...customers.name, name:updatedCustomer} ]);
     console.log('upated',customers);
     // 1. Set the new local customer state
-
     // 2. Create a SQL transaction to edit a customer. Make sure if two names are the same, only the selected item is deleted
   };
 
