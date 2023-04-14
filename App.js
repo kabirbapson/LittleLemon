@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Text, View, StyleSheet, Switch } from "react-native";
 import Constants from "expo-constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // import { Switch } from 'react-native-paper';
 
 export default function App() {
@@ -10,18 +11,7 @@ export default function App() {
     latestNews: false,
   });
 
-  // const updateState = (key) => () =>
-  //   setPreferences((prevState) => ({
-  //     ...prevState,
-  //     [key]: !prevState[key],
-  //   }));
-  const updateState = (key) =>
-    setPreferences({
-      ...preferences,
-      [key]: !preferences[key],
-    });
-
-  console.log(preferences);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Account Preferences</Text>
