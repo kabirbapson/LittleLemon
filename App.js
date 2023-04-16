@@ -61,6 +61,7 @@ export default function App() {
     // 2. Create a SQL transaction to edit a customer. Make sure if two names are the same, only the selected item is deleted
   };
 
+  
   const deleteCustomer = async (customer) => {
     const shouldDelete = await asyncAlert({
       title: "Delete customer",
