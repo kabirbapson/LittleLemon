@@ -17,6 +17,7 @@ import {
 } from "react-native-paper";
 import asyncAlert from "./asyncAlert";
 
+
 const db = SQLite.openDatabase("little_lemon");
 
 // Implement edit and delete with SQLite
@@ -26,7 +27,7 @@ export default function App() {
     customer: {},
     isVisible: false,
   });
-  
+
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
