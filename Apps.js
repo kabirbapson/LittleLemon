@@ -26,6 +26,7 @@ export default function App() {
     customer: {},
     isVisible: false,
   });
+  
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
