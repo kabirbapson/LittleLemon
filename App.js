@@ -1,206 +1,175 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  TextInput,
   Text,
-  TouchableOpacity,
-} from "react-native";
-import * as SQLite from "expo-sqlite";
+  View,
+  StyleSheet,
+  SectionList,
+  SafeAreaView,
+  StatusBar,
+  Alert,
+} from 'react-native';
+import { Searchbar } from 'react-native-paper';
+import debounce from 'lodash.debounce';
 import {
-  IconButton,
-  Provider,
-  Portal,
-  Dialog,
-  Button,
-} from "react-native-paper";
-import asyncAlert from "./asyncAlert";
+  createTable,
+  getMenuItems,
+  saveMenuItems,
+  filterByQueryAndCategories,
+} from './database';
+import Filters from './components/Filters';
+import { getSectionListData, useUpdateEffect } from './utils';
 
-const db = SQLite.openDatabase("little_lemon");
+const API_URL =
+  'https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json';
+const sections = ['Appetizers', 'Salads', 'Beverages'];
+
+const Item = ({ title, price }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.title}>${price}</Text>
+  </View>
+);
 
 export default function App() {
-  const [textInputValue, setTextInputValue] = useState("");
-  const [dialog, setDialog] = useState({
-    customer: {},
-    isVisible: false,
-  });
-  const [customers, setCustomers] = useState([]);
-  console.log(customers);
+  const [data, setData] = useState([]);
+  const [searchBarText, setSearchBarText] = useState('');
+  const [query, setQuery] = useState('');
+  const [filterSelections, setFilterSelections] = useState(
+    sections.map(() => true)
+  );
+console.log(filterSelections, searchBarText);
+  const fetchData = async() => {
+    // 1. Implement this function
+    
+    // Fetch the menu from the API_URL endpoint. You can visit the API_URL in your browser to inspect the data returned
+    // The category field comes as an object with a property called "title". You just need to get the title value and set it under the key "category".
+    // So the server response should be slighly transformed in this function (hint: map function) to flatten out each menu item in the array,
+    return [];
+  }
 
   useEffect(() => {
-    db.transaction((tx) => {
-      tx.executeSql(
-        "create table if not exists customers (id integer primary key not null, uid text, name text);"
-      );
-      tx.executeSql("select * from customers", [], (_, { rows }) => {
-        const customers = rows._array.map((item) => ({
-          uid: item.uid,
-          name: item.name,
-        }));
-        setCustomers(customers);
-      });
-    });
+    (async () => {
+      try {
+        await createTable();
+        let menuItems = await getMenuItems();
+
+        // The application only fetches the menu data once from a remote URL
+        // and then stores it into a SQLite database.
+        // After that, every application restart loads the menu from the database
+        if (!menuItems.length) {
+          const menuItems = await fetchData();
+          saveMenuItems(menuItems);
+        }
+
+        const sectionListData = getSectionListData(menuItems);
+        setData(sectionListData);
+      } catch (e) {
+        // Handle error
+        Alert.alert(e.message);
+      }
+    })();
   }, []);
 
-  const showDialog = (customer) =>
-    setDialog({
-      isVisible: true,
-      customer,
-  
-    });
+  useUpdateEffect(() => {
+    (async () => {
+      const activeCategories = sections.filter((s, i) => {
+        // If all filters are deselected, all categories are active
+        if (filterSelections.every((item) => item === false)) {
+          return true;
+        }
+        return filterSelections[i];
+      });
+      try {
+        const menuItems = await filterByQueryAndCategories(
+          query,
+          activeCategories
+        );
+        const sectionListData = getSectionListData(menuItems);
+        setData(sectionListData);
+      } catch (e) {
+        Alert.alert(e.message);
+      }
+    })();
+  }, [filterSelections, query]);
 
-  const hideDialog = (updatedCustomer) => {
-    setDialog({
-      isVisible: false,
-      customer: {},
-    });
-    setCustomers([...customers, {...customers.name, name:updatedCustomer} ]);
-    console.log('upated',customers);
-    // 1. Set the new local customer state
-    // 2. Create a SQL transaction to edit a customer. Make sure if two names are the same, only the selected item is deleted
+  const lookup = useCallback((q) => {
+    setQuery(q);
+  }, []);
+
+  const debouncedLookup = useMemo(() => debounce(lookup, 500), [lookup]);
+
+  const handleSearchChange = (text) => {
+    setSearchBarText(text);
+    debouncedLookup(text);
   };
 
-  
-  const deleteCustomer = async (customer) => {
-    const shouldDelete = await asyncAlert({
-      title: "Delete customer",
-      message: `Are you sure you want to delete the customer named "${customer.name}"?`,
-    });
-    if (!shouldDelete) {
-      return;
-    }
-
-    // 1. Set the new local customer state
-    // 2. Create a SQL transaction to delete a customer. Make sure if two names are the same, only the selected item is deleted
+  const handleFiltersChange = async (index) => {
+    const arrayCopy = [...filterSelections];
+    arrayCopy[index] = !filterSelections[index];
+    setFilterSelections(arrayCopy);
   };
 
   return (
-    <Provider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <Text style={styles.titleText}>Little Lemon Customers</Text>
-          <TextInput
-            placeholder="Enter the customer name"
-            value={textInputValue}
-            onChangeText={(data) => setTextInputValue(data)}
-            underlineColorAndroid="transparent"
-            style={styles.textInputStyle}
-          />
-          <TouchableOpacity
-            disabled={!textInputValue}
-            onPress={() => {
-              const newValue = {
-                uid: Date.now().toString(),
-                name: textInputValue,
-              };
-              setCustomers([...customers, newValue]);
-              db.transaction((tx) => {
-                tx.executeSql(
-                  "insert into customers (uid, name) values(?, ?)",
-                  [newValue.uid, newValue.name]
-                );
-              });
-              setTextInputValue("");
-            }}
-            style={styles.buttonStyle}
-          >
-            <Text style={styles.buttonTextStyle}> Save Customer </Text>
-          </TouchableOpacity>
-          <View>
-            <Text style={styles.customerName}>Customers: </Text>
-            {customers.map((customer, index) => (
-              <View key={index} style={styles.customer}>
-                <Text style={styles.customerName}>{customer.name}</Text>
-                <View style={styles.icons}>
-                  <IconButton
-                    icon="pen"
-                    size={24}
-                    onPress={() => showDialog(customer)}
-                  />
-                  <IconButton
-                    icon="delete"
-                    size={24}
-                    onPress={() => deleteCustomer(customer)}
-                  />
-                </View>
-              </View>
-            ))}
-          </View>
-        </View>
-        <Portal>
-          <Dialog visible={dialog.isVisible} onDismiss={hideDialog}>
-            <Dialog.Title>Edit Customer name</Dialog.Title>
-            <Dialog.Content>
-              <TextInput
-                value={dialog.customer.name}
-                onChangeText={(text) =>
-                  setDialog((prev) => ({
-                    ...prev,
-                    customer: {
-                      ...prev.customer,
-                      name: text,
-                    },
-                  }))
-                }
-                underlineColorAndroid="transparent"
-                style={styles.textInputStyle}
-              />
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={() => hideDialog(dialog.customer)}>Done</Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-      </SafeAreaView>
-    </Provider>
+    <SafeAreaView style={styles.container}>
+      <Searchbar
+        placeholder="Search"
+        placeholderTextColor="white"
+        onChangeText={handleSearchChange}
+        value={searchBarText}
+        style={styles.searchBar}
+        iconColor="white"
+        inputStyle={{ color: 'white' }}
+        elevation={0}
+      />
+      <Filters
+        selections={filterSelections}
+        onChange={handleFiltersChange}
+        sections={sections}
+      />
+      <SectionList
+        style={styles.sectionList}
+        sections={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Item title={item.title} price={item.price} />
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.header}>{title}</Text>
+        )}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    backgroundColor: "white",
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: '#495E57',
   },
-  titleText: {
-    fontSize: 22,
-    fontWeight: "bold",
-    textAlign: "center",
-    paddingVertical: 20,
+  sectionList: {
+    paddingHorizontal: 16,
   },
-  customer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+  searchBar: {
+    marginBottom: 24,
+    backgroundColor: '#495E57',
+    shadowRadius: 0,
+    shadowOpacity: 0,
   },
-  customerName: {
-    fontSize: 18,
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
   },
-  buttonStyle: {
-    fontSize: 16,
-    color: "white",
-    backgroundColor: "green",
-    padding: 5,
-    marginTop: 32,
-    minWidth: 250,
-    marginBottom: 16,
+  header: {
+    fontSize: 24,
+    paddingVertical: 8,
+    color: '#FBDABB',
+    backgroundColor: '#495E57',
   },
-  buttonTextStyle: {
-    padding: 5,
-    fontSize: 18,
-    color: "white",
-    textAlign: "center",
-  },
-  textInputStyle: {
-    textAlign: "center",
-    height: 40,
-    fontSize: 18,
-    width: "100%",
-    borderWidth: 1,
-    borderColor: "green",
-  },
-  icons: {
-    flexDirection: "row",
+  title: {
+    fontSize: 20,
+    color: 'white',
   },
 });
