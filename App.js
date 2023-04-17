@@ -37,10 +37,13 @@ export default function App() {
   const [filterSelections, setFilterSelections] = useState(
     sections.map(() => true)
   );
-console.log(filterSelections, searchBarText);
+// console.log(filterSelections, searchBarText);
   const fetchData = async() => {
     // 1. Implement this function
-    
+    fetch(
+      'https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/menu-items-by-category.json'  ).then(res => {
+      console.log(',mdfng', res);
+    })
     // Fetch the menu from the API_URL endpoint. You can visit the API_URL in your browser to inspect the data returned
     // The category field comes as an object with a property called "title". You just need to get the title value and set it under the key "category".
     // So the server response should be slighly transformed in this function (hint: map function) to flatten out each menu item in the array,
