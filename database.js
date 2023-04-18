@@ -35,7 +35,6 @@ export function saveMenuItems(menuItems) {
   });
 }
 
-
 /**
  * 4. Implement a transaction that executes a SQL statement to filter the menu by 2 criteria:
  * a query string and a list of categories.
