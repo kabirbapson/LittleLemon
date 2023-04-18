@@ -28,6 +28,7 @@ export async function getMenuItems() {
   });
 }
 
+
 export function saveMenuItems(menuItems) {
   db.transaction((tx) => {
     // 2. Implement a single SQL statement to save all menu data in a table called menuitems.
