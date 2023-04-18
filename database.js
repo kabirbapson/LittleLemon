@@ -17,6 +17,7 @@ export async function createTable() {
   });
 }
 
+
 export async function getMenuItems() {
   return new Promise((resolve) => {
     db.transaction((tx) => {
