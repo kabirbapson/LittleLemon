@@ -27,6 +27,7 @@ export async function getMenuItems() {
   });
 }
 
+
 export function saveMenuItems(menuItems) {
   db.transaction((tx) => {
     tx.executeSql(
