@@ -66,6 +66,11 @@ export function saveMenuItems(menuItems) {
  */
 export async function filterByQueryAndCategories(query, activeCategories) {
   return new Promise((resolve, reject) => {
-    resolve(SECTION_LIST_MOCK_DATA);
+    db.transaction((tx) => {
+      tx.executeSql("SELECT * FROM menuitems WHERE title LIKE %?% AND category = ?", [query, activeCategories], (_, { rows }) => {
+        resolve(rows._array);
+      });
+    });
   });
 }
+
