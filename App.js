@@ -70,10 +70,10 @@ export default function App() {
         //   saveMenuItems(menuItems);
         // }
 
-        console.log(menuItems)
+      
 
+        
         const sectionListData = getSectionListData(menuItems);
-        console.log('sectionListData', sectionListData);
         setData(sectionListData);
       } catch (e) {
         // Handle error
