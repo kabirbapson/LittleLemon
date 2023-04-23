@@ -72,7 +72,7 @@ export default function App() {
 
       
 
-        
+
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
       } catch (e) {
@@ -93,14 +93,14 @@ export default function App() {
         return filterSelections[i];
       });
       try {
-        const menuItems = await filterByQueryAndCategories(
-          query,
-          activeCategories
-        );
+        
+        const menuItems = await filterByQueryAndCategories(query,activeCategories);
+        console.log('hello')
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
       } catch (e) {
         Alert.alert(e.message);
+        console.log('hello world')
       }
     })();
   }, [filterSelections, query]);
@@ -117,8 +117,10 @@ export default function App() {
   };
 
   const handleFiltersChange = async (index) => {
+  
     const arrayCopy = [...filterSelections];
     arrayCopy[index] = !filterSelections[index];
+    
     setFilterSelections(arrayCopy);
   };
 

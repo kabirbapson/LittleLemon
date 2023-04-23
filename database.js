@@ -65,6 +65,7 @@ export function saveMenuItems(menuItems) {
  *
  */
 export async function filterByQueryAndCategories(query, activeCategories) {
+  console.log('inside func')
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql("SELECT * FROM menuitems WHERE title LIKE %?% AND category = ?", [query, activeCategories], (_, { rows }) => {

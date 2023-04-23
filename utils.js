@@ -44,15 +44,15 @@ export function getSectionListData(arr) {
   // The title of each section should be the category.
   // The data property should contain an array of menu items.
   // Each item has the following properties: "id", "title" and "price"
+
   // create a new array where we will be storing the data
   let formatedData = []
-    
   while (arr.length > 0 ) {
       // get the first title in array to filter the data
       let title = arr[0].category
       // get all the data with the same category as our title
       let data = arr.filter(item => item.category === title);
-      // get the data data that does not have the same name as our title and make it our new array
+      // get the data that does not have the same name as our title and make it our new array
       arr = arr.filter(item => item.category !== title);
       // update the formated data
       formatedData.push({title, data})
