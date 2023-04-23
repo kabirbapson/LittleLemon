@@ -40,18 +40,21 @@ export default function App() {
   // console.log(filterSelections, searchBarText);
   const fetchData = async () => {
     // 1. Implement this function
-    let data = []
+    let data = [];
     try {
       const response = await fetch(API_URL);
       data = await response.json();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    
+
     // Fetch the menu from the API_URL endpoint. You can visit the API_URL in your browser to inspect the data returned
     // The category field comes as an object with a property called "title". You just need to get the title value and set it under the key "category".
     // So the server response should be slighly transformed in this function (hint: map function) to flatten out each menu item in the array,
-    return data.menu.map(menu => ({ ...menu, category: menu.category.title }));
+    return data.menu.map((menu) => ({
+      ...menu,
+      category: menu.category.title,
+    }));
   };
 
   useEffect(() => {
@@ -63,15 +66,12 @@ export default function App() {
         // The application only fetches the menu data once from a remote URL
         // and then stores it into a SQLite database.
         // After that, every application restart loads the menu from the database
-        
-        // if (!menuItems.length) {
-        //   const menuItems = await fetchData();
-        //   console.log(menuItems);
-        //   saveMenuItems(menuItems);
-        // }
 
-      
-
+        if (!menuItems.length) {
+          const menuItems = await fetchData();
+          console.log(menuItems);
+          saveMenuItems(menuItems);
+        }
 
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
@@ -81,7 +81,6 @@ export default function App() {
       }
     })();
   }, []);
-  
 
   useUpdateEffect(() => {
     (async () => {
@@ -93,14 +92,16 @@ export default function App() {
         return filterSelections[i];
       });
       try {
-        
-        const menuItems = await filterByQueryAndCategories(query,activeCategories);
-        console.log('hello')
+        const menuItems = await filterByQueryAndCategories(
+          query,
+          activeCategories
+        );
+        console.log("hello");
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
       } catch (e) {
         Alert.alert(e.message);
-        console.log('hello world')
+        console.log("hello world");
       }
     })();
   }, [filterSelections, query]);
@@ -117,10 +118,9 @@ export default function App() {
   };
 
   const handleFiltersChange = async (index) => {
-  
     const arrayCopy = [...filterSelections];
     arrayCopy[index] = !filterSelections[index];
-    
+
     setFilterSelections(arrayCopy);
   };
 
