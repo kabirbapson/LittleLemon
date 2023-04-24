@@ -57,6 +57,7 @@ export default function App() {
     }));
   };
 
+  
   useEffect(() => {
     (async () => {
       try {
@@ -73,7 +74,7 @@ export default function App() {
           saveMenuItems(menuItems);
         }
 
-        
+
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
       } catch (e) {
