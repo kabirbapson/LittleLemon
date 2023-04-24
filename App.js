@@ -73,6 +73,7 @@ export default function App() {
           saveMenuItems(menuItems);
         }
 
+        
         const sectionListData = getSectionListData(menuItems);
         setData(sectionListData);
       } catch (e) {
