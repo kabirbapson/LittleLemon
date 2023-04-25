@@ -57,7 +57,7 @@ export default function App() {
     }));
   };
 
-  
+
   useEffect(() => {
     (async () => {
       try {
@@ -70,6 +70,7 @@ export default function App() {
 
         if (!menuItems.length) {
           const menuItems = await fetchData();
+          
           console.log(menuItems);
           saveMenuItems(menuItems);
         }
