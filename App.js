@@ -57,7 +57,6 @@ export default function App() {
     }));
   };
 
-  
   useEffect(() => {
     (async () => {
       try {
