@@ -48,7 +48,9 @@ export default function App() {
       console.log(error);
     }
 
+
     
+
 
     // Fetch the menu from the API_URL endpoint. You can visit the API_URL in your browser to inspect the data returned
     // The category field comes as an object with a property called "title". You just need to get the title value and set it under the key "category".
