@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   Text,
-  
   TouchableOpacity,
 } from "react-native";
 import * as SQLite from "expo-sqlite";
@@ -17,7 +16,6 @@ import {
   Button,
 } from "react-native-paper";
 import asyncAlert from "./asyncAlert";
-
 
 const db = SQLite.openDatabase("little_lemon");
 
