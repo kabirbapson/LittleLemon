@@ -61,7 +61,6 @@ const data = [
     price: null,
     title: "Water",
     uuid: "9",
-    
   },
   {
     category: "Beverages",
@@ -69,8 +68,8 @@ const data = [
     price: null,
     title: "Coke",
     uuid: "10",
-    },
-  
+  },
+
   {
     category: "Beverages",
     id: 11,
