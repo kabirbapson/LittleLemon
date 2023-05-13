@@ -8,12 +8,12 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Avatar, Button, Chip, Title } from "react-native-paper";
+import { Avatar, Button, Checkbox, Chip, Title } from "react-native-paper";
 import Inputs from "../components/Inputs";
 
 export default function Profile() {
   const [disabled, setDisabled] = useState(true);
-  const [fname, setFname] = useState("");
+  const [checked, setChecked] = useState(false);
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function Profile() {
       <View
         style={{
           alignItems: "center",
-          height: "70%",
+          // height: "70%",
           marginTop: 10,
           padding: 10,
           backgroundColor: "#808080",
@@ -60,10 +60,27 @@ export default function Profile() {
         <Text style={{ fontSize: 30, fontWeight: "400", margin: 20 }}>
           Profile Page of {user && user.fname}
         </Text>
-        <Inputs label={'First Name'} value={user.fname.split(' ')[0]} />
-        <Inputs label={'First Name'} value={user.fname.split(' ')[1]} />
+        <Inputs label={'First Name'} value={user && user.fname.split(' ')[0]} />
+        <Inputs label={'First Name'} value={user && user.fname.split(' ')[1]} />
 
-        <Inputs label={'First Name'} />
+        <Inputs label={'Email'} value={user.email} />
+      </View>
+
+      <View
+        style={{ backgroundColor:'yellow',
+          // alignItems: "center",
+          margin: 10,
+          padding: 10,
+        }}
+        >
+          <Title>Email Notifications</Title>
+        <Checkbox
+        status={checked ? 'checked' : 'unchecked'}
+        // onPress={() => {
+        //   setChecked(!checked);
+        // }} 
+          color="red" 
+      />
       </View>
     </SafeAreaView>
   );
