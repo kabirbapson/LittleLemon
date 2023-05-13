@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import {
   Image,
@@ -31,15 +32,18 @@ export default function Onboarding() {
       setDisabled(true);
     }
   };
-  
+  const onNext = () => {
+    AsyncStorage.setItem('user', JSON.stringify({ fname, email }))
+    console.log(fname, email);
+  }
   return (
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
-        {/* <Image
+        <Image
           style={{ width: "100%", height: 80 }}
           resizeMode="contain"
-          source={require("./assets/Logo.png")}
-        /> */}
+          source={require("./../assets/Logo.png")}
+        />
       </View>
       <View
         style={{
@@ -120,7 +124,7 @@ export default function Onboarding() {
       >
         <Pressable
           disabled={fname.length < 1 && email.length < 1 ? true : false }
-          onPress={() => console.log(fname, email)}
+          onPress={onNext}
           style={{
             padding: 0,
             backgroundColor: "gray",
