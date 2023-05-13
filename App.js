@@ -1,12 +1,11 @@
 import React from 'react'
 import Onboarding from './screens/Onboarding'
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, Text, View } from 'react-native'
 
 const App = () => {
   return (
-    <SafeAreaView >
-      <Text>bvmf</Text>
-    </SafeAreaView>
+      <Onboarding />
+
   )
 }
 

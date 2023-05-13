@@ -1,16 +1,45 @@
 import { useState } from "react";
-import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function Onboarding() {
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+  const [fname, setFname] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleName = (e) => {
+    setFname(e);
+    if (fname.length > 0) {
+      setDisabled(false);
+    }
+    if (!isNaN(fname)) {
+      setDisabled(true);
+    }
+  };
+  const handleEmail = (e) => {
+    setEmail(e);
+    if (email.length > 0) {
+      setDisabled(false);
+    }
+    if (!isNaN(email)) {
+      setDisabled(true);
+    }
+  };
+  
   return (
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
-        <Image
+        {/* <Image
           style={{ width: "100%", height: 80 }}
           resizeMode="contain"
           source={require("./assets/Logo.png")}
-        />
+        /> */}
       </View>
       <View
         style={{
@@ -44,6 +73,9 @@ export default function Onboarding() {
               First Name
             </Text>
             <TextInput
+              value={fname}
+              keyboardType="default"
+              onChangeText={(e) => handleName(e)}
               style={{
                 borderWidth: 1,
                 height: 40,
@@ -60,9 +92,12 @@ export default function Onboarding() {
             }}
           >
             <Text style={{ fontSize: 20, fontWeight: "500", margin: 20 }}>
-              Last Name
+              Email
             </Text>
             <TextInput
+              keyboardType="email-address"
+              value={email}
+              onChangeText={(e) => handleEmail(e)}
               style={{
                 borderWidth: 1,
                 height: 40,
@@ -84,8 +119,8 @@ export default function Onboarding() {
         }}
       >
         <Pressable
-          disabled={disabled}
-          onPress={() => console.log("object")}
+          disabled={fname.length < 1 && email.length < 1 ? true : false }
+          onPress={() => console.log(fname, email)}
           style={{
             padding: 0,
             backgroundColor: "gray",
