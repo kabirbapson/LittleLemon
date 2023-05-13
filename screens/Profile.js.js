@@ -8,7 +8,8 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar, Button, Chip, Title } from "react-native-paper";
+import Inputs from "../components/Inputs";
 
 export default function Profile() {
   const [disabled, setDisabled] = useState(true);
@@ -19,31 +20,33 @@ export default function Profile() {
     AsyncStorage.getItem("user")
       .then((user) => setUser(JSON.parse(user)))
       .catch((err) => console.log(err));
-    console.log(user, "fjj");
+    // console.log(user, "fjj");
   }, []);
   return (
-    <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
-      <View style={{ flexDirection: "row", alignItems:'center', padding:10 }}>
-        <Avatar.Image
-          style={{ margin: 10 }}
-          size={100}
+    <SafeAreaView style={{ backgroundColor: "#fff", margin: 4 }}>
+      <Title style={{ marginLeft: 10 }}>
+        Personal Information
+      </Title>
+      <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
+        <Avatar.Image 
+          style={{ marginBottom: 10,  }}
+          size={80} 
           source={require("./../assets/kbpp.jpg")}
         />
         <Button
           mode="contained"
-          style={{ width: 100, height: 40, backgroundColor: "green", margin:10 }}
+          style={{
+            width: 100,
+            height: 40,
+            backgroundColor: "green",
+            margin: 10,
+          }}
         >
-          fdgf
+          <Text>Change</Text>
         </Button>
-        <Button mode="outlined" style={{ width: 100 }}>
-          fdgf
-        </Button>
-
-        {/* <Image
-          style={{ width: "100%", height: 80 }}
-          resizeMode="contain"
-          source={require("./assets/Logo.png")}
-        /> */}
+        <Chip mode="outlined">
+          <Text>Remove</Text>
+        </Chip>
       </View>
       <View
         style={{
@@ -57,6 +60,10 @@ export default function Profile() {
         <Text style={{ fontSize: 30, fontWeight: "400", margin: 20 }}>
           Profile Page of {user && user.fname}
         </Text>
+        <Inputs label={'First Name'} value={user.fname.split(' ')[0]} />
+        <Inputs label={'First Name'} value={user.fname.split(' ')[1]} />
+
+        <Inputs label={'First Name'} />
       </View>
     </SafeAreaView>
   );
