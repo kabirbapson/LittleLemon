@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-export default function Onboarding() {
+export default function Onboarding({navigation}) {
   const [disabled, setDisabled] = useState(true);
   const [fname, setFname] = useState("");
   const [email, setEmail] = useState("");
@@ -34,7 +34,8 @@ export default function Onboarding() {
   };
   const onNext = () => {
     AsyncStorage.setItem('user', JSON.stringify({ fname, email }))
-    console.log(fname, email);
+    console.log('first')
+    navigation.navigate('profile')
   }
   return (
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
