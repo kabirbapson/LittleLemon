@@ -20,15 +20,14 @@ export default function Profile() {
   const [checked, setChecked] = useState(false);
   const [user, setUser] = useState("");
   const [number, setNumber] = useState();
-  const [pic, setPic] = useState(null);
+  const [pic, setPic] = useState('');
   useEffect(() => {
     AsyncStorage.getItem("profile")
-      .then((user) =>
-      {
-        console.log(JSON.parse( user), 'ddd')
-        setUser(JSON.parse(user))
-  }
-    )
+      .then((user) => {
+        console.log("Profile",JSON.parse(user) );
+        setUser(JSON.parse(user));
+        setPic(user.pic)
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -44,7 +43,7 @@ export default function Profile() {
       setPic(result.assets[0].uri);
     }
   };
-  // console.log(user, number, pic);
+  console.log('msjsjjs',user.number);
   return (
     <SafeAreaView
       style={{ backgroundColor: "#fff", marginHorizontal: 4, flex: 1 }}
@@ -58,15 +57,15 @@ export default function Profile() {
           marginTop: 10,
         }}
       >
-        {pic ? (
-          <Avatar.Image size={80} source={{ uri: pic }} />
+        {user.pic ? (
+          <Avatar.Image size={80} source={{ uri: user.pic }} />
         ) : (
           <Avatar.Text
             size={80}
             label={
-              user && "dfghf"
-              // user.fname.split(" ")[0].charAt(0) +
-              //   user.fname.split(" ")[1].charAt(0)
+              user && 
+              user.user.fname.split(" ")[0].charAt(0) +
+                user.user.fname.split(" ")[1].charAt(0)
             }
           />
         )}
@@ -91,9 +90,10 @@ export default function Profile() {
           marginTop: 10,
         }}
       >
-        {/* <Inputs label={"First Name"} value={user && user.fname.split(" ")[0]} />
-        <Inputs label={"First Name"} value={user && user.fname.split(" ")[1]} /> */}
-        <Inputs label={"Email"} value={user && user.email} />
+        <Inputs label={"First Name"} value={user && user.user.fname.split(" ")[0]} />
+        <Inputs label={"First Name"} value={user && user.user.fname.split(" ")[1]} />
+        <Inputs label={"Email"} value={user && user.user.email} />
+        <Text style={{alignSelf:'flex-start'}}>Mobile</Text>
         <MaskedTextInput
           style={{
             width: "100%",
@@ -102,7 +102,8 @@ export default function Profile() {
             borderWidth: 1,
             paddingLeft: 10,
           }}
-          value={number}
+          placeholder="Mobile"
+          value={user.number}
           mask="999-9999-9999"
           onChangeText={(e) => setNumber(e)}
         />
@@ -247,9 +248,7 @@ export default function Profile() {
               "profile",
               JSON.stringify({ user, number, pic })
             ).catch((err) => console.log(err));
-            console.log("saved");
-
-            navigation.navigate('welcome')
+            alert("Info saved");
           }}
           mode="contained"
           style={{

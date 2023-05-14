@@ -6,34 +6,35 @@ import RootNavigator from "./navigators/RootNavigator";
 import Onboarding from "./screens/Onboarding";
 import Profile from "./screens/Profile.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import WelcomeScreen from "./components/WelcomeScreen";
+import Home from "./screens/Home";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem("user")
+    AsyncStorage.getItem("profile")
       .then((user) => {
-        console.log(user, 'App')
+        console.log(user, "App");
         if (!user) {
-          setIsSignedIn(false)
-          return
+          setIsSignedIn(false);
+          return;
         }
-        setIsSignedIn(true)
+        setIsSignedIn(true);
       })
       .catch((err) => console.log(err));
   }, [isSignedIn]);
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerBackVisible: true }}>
+      <Stack.Navigator screenOptions={{ headerBackVisible: false, headerShown:false }}>
         {isSignedIn ? (
-          <Stack.Screen name="profile" component={Profile} />
-          ) : (
+          <>
+            <Stack.Screen name="home" options={{title:'Home'}} component={Home} />
+            <Stack.Screen name="profile" component={Profile} />
+          </>
+        ) : (
           <Stack.Screen name="onboarding" component={Onboarding} />
         )}
-          <Stack.Screen name="welcome" component={WelcomeScreen} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
