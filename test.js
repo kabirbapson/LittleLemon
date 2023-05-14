@@ -6,7 +6,6 @@ const data = [
     title: "Spinach Artichoke Dip",
     uuid: "1",
   },
-  
   {
     category: "Appetizers",
     id: 2,
