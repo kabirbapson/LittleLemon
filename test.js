@@ -63,6 +63,7 @@ const data = [
     uuid: "9",
   },
   {
+    
     category: "Beverages",
     id: 10,
     price: null,
