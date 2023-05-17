@@ -37,6 +37,7 @@ export default function Onboarding({ navigation }) {
     console.log("first");
     navigation.navigate("profile");
   };
+  
   return (
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
