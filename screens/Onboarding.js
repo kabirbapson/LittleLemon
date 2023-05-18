@@ -33,11 +33,12 @@ export default function Onboarding({ navigation }) {
     }
   };
   const onNext = () => {
+    
     AsyncStorage.setItem("user", JSON.stringify({ fname, email }));
     console.log("first");
     navigation.navigate("profile");
   };
-  
+
   return (
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
