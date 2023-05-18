@@ -33,7 +33,6 @@ export default function Onboarding({ navigation }) {
     }
   };
   const onNext = () => {
-    
     AsyncStorage.setItem("user", JSON.stringify({ fname, email }));
     console.log("first");
     navigation.navigate("profile");
