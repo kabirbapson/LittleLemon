@@ -9,9 +9,6 @@ import {
   View,
 } from "react-native";
 
-
-
-
 export default function Onboarding({ navigation }) {
   const [disabled, setDisabled] = useState(true);
   const [fname, setFname] = useState("");
