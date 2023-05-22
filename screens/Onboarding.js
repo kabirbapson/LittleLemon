@@ -14,7 +14,6 @@ export default function Onboarding({ navigation }) {
   const [fname, setFname] = useState("");
   const [email, setEmail] = useState("");
 
-  
   const handleName = (e) => {
     setFname(e);
     if (fname.length > 0) {
