@@ -43,6 +43,7 @@ export default function Profile() {
       setPic(result.assets[0].uri);
     }
   };
+
   
   console.log("msjsjjs", user.number);
 
