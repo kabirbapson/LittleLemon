@@ -44,6 +44,7 @@ export default function Profile() {
     }
   };
   console.log("msjsjjs", user.number);
+  
   return (
     <SafeAreaView
       style={{ backgroundColor: "#fff", marginHorizontal: 4, flex: 1 }}
