@@ -56,6 +56,7 @@ export default function Profile() {
         style={{
           flexDirection: "row",
           alignItems: "center",
+          
           paddingLeft: 10,
           marginTop: 10,
         }}
