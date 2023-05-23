@@ -48,6 +48,7 @@ export default function Profile() {
   console.log("msjsjjs", user.number);
 
   return (
+    
     <SafeAreaView
       style={{ backgroundColor: "#fff", marginHorizontal: 4, flex: 1 }}
     >
@@ -56,7 +57,7 @@ export default function Profile() {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          
+
           paddingLeft: 10,
           marginTop: 10,
         }}
