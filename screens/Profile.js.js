@@ -53,6 +53,7 @@ export default function Profile() {
     >
 
       
+      
       <Title style={{ marginLeft: 10 }}>Personal Information</Title>
       <View
         style={{
