@@ -44,6 +44,7 @@ export default function Profile() {
     }
   };
 
+  
   console.log("msjsjjs", user.number);
 
   return (
