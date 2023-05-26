@@ -40,11 +40,12 @@ export default function Profile() {
       quality: 1,
     });
     if (!result.canceled) {
+      
       setPic(result.assets[0].uri);
     }
   };
 
-  
+
   console.log("msjsjjs", user.number);
 
 
