@@ -19,8 +19,6 @@ export default function App() {
         if (!user) {
           setIsSignedIn(false);
           return;
-
-          
         }
         setIsSignedIn(true);
       })
@@ -28,10 +26,16 @@ export default function App() {
   }, [isSignedIn]);
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerBackVisible: false, headerShown:false }}>
+      <Stack.Navigator
+        screenOptions={{ headerBackVisible: false, headerShown: false }}
+      >
         {isSignedIn ? (
           <>
-            <Stack.Screen name="home" options={{title:'Home'}} component={Home} />
+            <Stack.Screen
+              name="home"
+              options={{ title: "Home" }}
+              component={Home}
+            />
             <Stack.Screen name="profile" component={Profile} />
           </>
         ) : (
