@@ -19,6 +19,8 @@ export default function App() {
         if (!user) {
           setIsSignedIn(false);
           return;
+
+          
         }
         setIsSignedIn(true);
       })
