@@ -156,7 +156,7 @@ export default function Home({ navigation }) {
               alignItems: "center",
             }}
           >
-            <TextInput inlineImageLeft="../assets/hero.png" style={{ width: "90%" }} />
+            <TextInput inlineImageLeft="../assets/hero.pngr" style={{ width: "90%" }} />
           </View>
         </View>
 
