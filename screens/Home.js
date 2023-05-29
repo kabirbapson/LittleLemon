@@ -143,6 +143,7 @@ export default function Home({ navigation }) {
                   marginTop: 10,
                   alignSelf: "center",
                 }}
+                
                 source={require("../assets/Hero.png")}
               />
             </View>
