@@ -152,6 +152,7 @@ export default function Home({ navigation }) {
           </View>
           <View
             style={{
+              
               marginTop: 20,
               backgroundColor: "green",
               width: "90%",
