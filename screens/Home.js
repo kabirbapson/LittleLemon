@@ -137,22 +137,18 @@ export default function Home({ navigation }) {
               <Image
                 resizeMode="cover"
                 style={{
-                 
                   borderRadius: 20,
                   width: 160,
                   height: 180,
                   marginTop: 10,
                   alignSelf: "center",
                 }}
-
                 source={require("../assets/Hero.png")}
               />
-
             </View>
           </View>
           <View
             style={{
-              
               marginTop: 20,
               backgroundColor: "green",
               width: "90%",
@@ -160,17 +156,19 @@ export default function Home({ navigation }) {
               alignItems: "center",
             }}
           >
-            <TextInput inlineImageLeft="../assets/hero.pngr" style={{ width: "90%" }} />
+            <TextInput
+              inlineImageLeft="../assets/hero.pngr"
+              style={{ width: "90%" }}
+            />
           </View>
         </View>
 
-        <View style={{width:'100%'}}>
-
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
+        <View style={{ width: "100%" }}>
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <Text>{item.name}</Text>}
           />
-          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
