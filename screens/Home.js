@@ -157,7 +157,7 @@ export default function Home({ navigation }) {
             }}
           >
             <TextInput
-              inlineImageLeft="../assets/hero.pngr"
+              inlineImageLeft="..ƒ/assets/hero.pngr"
               style={{ width: "90%" }}
             />
           </View>
