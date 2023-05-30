@@ -137,6 +137,7 @@ export default function Home({ navigation }) {
               <Image
                 resizeMode="cover"
                 style={{
+                 
                   borderRadius: 20,
                   width: 160,
                   height: 180,
@@ -146,7 +147,7 @@ export default function Home({ navigation }) {
 
                 source={require("../assets/Hero.png")}
               />
-              
+
             </View>
           </View>
           <View
