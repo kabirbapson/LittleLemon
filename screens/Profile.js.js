@@ -40,17 +40,11 @@ export default function Profile() {
       quality: 1,
     });
     if (!result.canceled) {
-      
       setPic(result.assets[0].uri);
     }
   };
 
-
-
-
   console.log("msjsjjs", user.number);
-  
-
 
   return (
     <SafeAreaView
@@ -72,9 +66,9 @@ export default function Profile() {
           <Avatar.Text
             size={80}
             label={
-              user &&
-              user.user.fname.split(" ")[0].charAt(0) +
-                user.user.fname.split(" ")[1].charAt(0)
+              user.user &&
+              (user.user.fname.split(" ")[0].charAt(0) + user &&
+              user.user.fname.split(" ")[1].charAt(0))
             }
           />
         )}

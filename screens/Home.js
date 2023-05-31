@@ -80,7 +80,6 @@ console.log(data)
         <Button
           onPress={() => navigation.navigate("profile")}
           style={{
-            backgroundColor: "green",
             position: "absolute",
             right: 10,
           }}
@@ -194,7 +193,7 @@ console.log(data)
           <FlatList
             keyExtractor={item=> item.name}
             ItemSeparatorComponent={<Divider style={{}} />}
-            data={data.filter(item => item.name.toLowerCase().includes(text.toLowerCase()) || item.description.toLowerCase().includes(text.toLowerCase()))}
+            data={data && data.filter(item => item.name.toLowerCase().includes(text.toLowerCase()) || item.description.toLowerCase().includes(text.toLowerCase()))}
             renderItem={({ item }) => (
               <View
                 onPress={() => console.log(items)}

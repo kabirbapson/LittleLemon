@@ -39,7 +39,10 @@ export default function App() {
             <Stack.Screen name="profile" component={Profile} />
           </>
         ) : (
-          <Stack.Screen name="onboarding" component={Onboarding} />
+            <>
+            <Stack.Screen name="onboarding" component={Onboarding} />
+            </>
+            
         )}
       </Stack.Navigator>
     </NavigationContainer>
