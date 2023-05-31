@@ -21,15 +21,15 @@ export default function Home({ navigation }) {
   const [text, setText] = React.useState("");
 
   React.useEffect(() => {
-    db.transaction(tx => {
+    db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)'
+        "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)"
       );
-      tx.executeSql('INSERT INTO items (name) VALUES (?)', ['Item 1']);
-      tx.executeSql('SELECT * FROM items', [], (_, { rows }) => {
+      tx.executeSql("INSERT INTO items (name) VALUES (?)", ["Item 1"]);
+      tx.executeSql("SELECT * FROM items", [], (_, { rows }) => {
         // Handle query results
         const items = rows._array;
-        console.log(items);
+        // console.log(items);
       });
     });
   }, []);
@@ -53,7 +53,7 @@ export default function Home({ navigation }) {
   const renderItem = () => {
     return <></>;
   };
-  console.log(text);
+console.log(data.map(data => data.name))
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -208,7 +208,7 @@ export default function Home({ navigation }) {
               >
                 <View style={{ justifyContent: "space-around", width: "90%" }}>
                   <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                    {item.name}
+                    {item.name.includes("g")}
                   </Text>
                   <Text style={{ marginVertical: 5 }}>{item.description}</Text>
                   <Text style={{ fontSize: 18 }}>${item.price}</Text>

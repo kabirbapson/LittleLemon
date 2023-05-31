@@ -102,4 +102,6 @@ function transformData(arr) {
   // return the formated data if available
   return formatedData;
 }
-console.log(data.filter(item => item.category !== data[0].category))
+const arrrr = data.map(data => data.title)
+const dd = arrrr.filter(names => names.toLowerCase().includes('s'))
+console.log(dd)
