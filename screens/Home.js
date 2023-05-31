@@ -53,7 +53,7 @@ export default function Home({ navigation }) {
   const renderItem = () => {
     return <></>;
   };
-console.log(data.map(data => data.name))
+console.log(data)
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -192,8 +192,9 @@ console.log(data.map(data => data.name))
         </View>
         <View style={{ width: "100%", height: "43%" }}>
           <FlatList
+            keyExtractor={item=> item.name}
             ItemSeparatorComponent={<Divider style={{}} />}
-            data={data}
+            data={data.filter(item => item.name.toLowerCase().includes(text.toLowerCase()) || item.description.toLowerCase().includes(text.toLowerCase()))}
             renderItem={({ item }) => (
               <View
                 onPress={() => console.log(items)}
@@ -208,15 +209,13 @@ console.log(data.map(data => data.name))
               >
                 <View style={{ justifyContent: "space-around", width: "90%" }}>
                   <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                    {item.name.includes("g")}
+                    {item.name}
                   </Text>
                   <Text style={{ marginVertical: 5 }}>{item.description}</Text>
                   <Text style={{ fontSize: 18 }}>${item.price}</Text>
                 </View>
                 <View
-                // style={{ width: '100%', backgroundColor: 'green' }}
                 >
-                  {/* {[0, 2, 3,].map(items => <Text>{ items}</Text>)} */}
                   <Image
                     style={{
                       borderRadius: 10,
