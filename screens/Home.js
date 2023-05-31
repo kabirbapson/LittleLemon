@@ -9,26 +9,30 @@ import {
   Text,
   View,
 } from "react-native";
-import { Avatar, Button, TextInput } from "react-native-paper";
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
+import { Avatar, Button, Divider, TextInput } from "react-native-paper";
+import Feather from "@expo/vector-icons/Feather";
+import * as SQLite from "expo-sqlite";
+const db = SQLite.openDatabase("database.db");
+
 export default function Home({ navigation }) {
   const [user, setUser] = React.useState("");
   const [data, setData] = React.useState();
   const [pic, setPic] = React.useState("");
+  const [text, setText] = React.useState("");
 
+  React.useEffect(() => {
+    db.transaction(tx => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)'
+      );
+      tx.executeSql('INSERT INTO items (name) VALUES (?)', ['Item 1']);
+      tx.executeSql('SELECT * FROM items', [], (_, { rows }) => {
+        // Handle query results
+        const items = rows._array;
+        console.log(items);
+      });
+    });
+  }, []);
   React.useEffect(() => {
     fetch(
       "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/capstone.json"
@@ -49,6 +53,7 @@ export default function Home({ navigation }) {
   const renderItem = () => {
     return <></>;
   };
+  console.log(text);
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -149,24 +154,81 @@ export default function Home({ navigation }) {
           </View>
           <View
             style={{
-              marginTop: 20,
-              backgroundColor: "green",
-              width: "90%",
+              flexDirection: "row",
+              margin: 20,
+              backgroundColor: "#D9D9D9",
+              width: "100%",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
+            <Feather name="search" size={25} />
             <TextInput
+              mode="flat"
               inlineImageLeft="..ƒ/assets/hero.pngr"
-              style={{ width: "90%" }}
+              style={{ width: "90%", marginLeft: 5 }}
+              value={text}
+              onChangeText={(text) => setText(text)}
             />
           </View>
         </View>
 
         <View style={{ width: "100%" }}>
+          <Text style={{ fontWeight: "bold" }}>ORDER FOR DELIVERY</Text>
+          <View style={{ flexDirection: "row" }}>
+            {["Starters", "Mains", "Desserts", "Drinks"].map((items) => (
+              <Button
+                onPress={() => console.log(items)}
+                style={{
+                  margin: 10,
+                  backgroundColor: "#D9D9D9",
+                  borderRadius: 10,
+                }}
+              >
+                <Text>{items}</Text>
+              </Button>
+            ))}
+          </View>
+        </View>
+        <View style={{ width: "100%", height: "43%" }}>
           <FlatList
+            ItemSeparatorComponent={<Divider style={{}} />}
             data={data}
-            renderItem={({ item }) => <Text>{item.name}</Text>}
+            renderItem={({ item }) => (
+              <View
+                onPress={() => console.log(items)}
+                style={{
+                  width: "80%",
+                  flexDirection: "row",
+                  margin: 5,
+                  padding: 10,
+                  // backgroundColor: "#D9D9D9",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={{ justifyContent: "space-around", width: "90%" }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    {item.name}
+                  </Text>
+                  <Text style={{ marginVertical: 5 }}>{item.description}</Text>
+                  <Text style={{ fontSize: 18 }}>${item.price}</Text>
+                </View>
+                <View
+                // style={{ width: '100%', backgroundColor: 'green' }}
+                >
+                  {/* {[0, 2, 3,].map(items => <Text>{ items}</Text>)} */}
+                  <Image
+                    style={{
+                      borderRadius: 10,
+                      width: 100,
+                      height: 100,
+                    }}
+                    resizeMode="cover"
+                    source={require("./../assets/Greeksalad.png")}
+                  />
+                </View>
+              </View>
+            )}
           />
         </View>
       </View>
