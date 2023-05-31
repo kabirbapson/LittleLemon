@@ -102,3 +102,4 @@ function transformData(arr) {
   // return the formated data if available
   return formatedData;
 }
+console.log(data.filter(item => item.category !== data[0].category))
