@@ -57,6 +57,7 @@ export default function Onboarding({ navigation }) {
           backgroundColor: "#808080",
         }}
       >
+        
         <Text style={{ fontSize: 30, fontWeight: "400", margin: 20 }}>
           Lets get to know you
         </Text>
