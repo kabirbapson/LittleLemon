@@ -9,7 +9,6 @@ import {
   View,
 } from "react-native";
 
-
 export default function Onboarding({ navigation }) {
   const [disabled, setDisabled] = useState(true);
   const [fname, setFname] = useState("");
@@ -57,7 +56,6 @@ export default function Onboarding({ navigation }) {
           backgroundColor: "#808080",
         }}
       >
-        
         <Text style={{ fontSize: 30, fontWeight: "400", margin: 20 }}>
           Lets get to know you
         </Text>
