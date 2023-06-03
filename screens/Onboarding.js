@@ -49,6 +49,7 @@ export default function Onboarding({ navigation }) {
       </View>
       <View
         
+        
         style={{
           alignItems: "center",
           height: "70%",
