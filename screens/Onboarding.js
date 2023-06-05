@@ -47,7 +47,6 @@ export default function Onboarding({ navigation }) {
           source={require("./../assets/Logo.png")}
         />
       </View>
-
       <View
         style={{
           alignItems: "center",
