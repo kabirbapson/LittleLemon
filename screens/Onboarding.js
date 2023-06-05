@@ -48,6 +48,9 @@ export default function Onboarding({ navigation }) {
         />
         
 
+
+        
+
       </View>
       
 
