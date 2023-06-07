@@ -39,7 +39,6 @@ export default function Onboarding({ navigation }) {
   };
 
   return (
-    
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
         <Image
@@ -47,7 +46,6 @@ export default function Onboarding({ navigation }) {
           resizeMode="contain"
           source={require("./../assets/Logo.png")}
         />
-        
       </View>
       <View
         style={{
