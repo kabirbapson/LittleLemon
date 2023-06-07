@@ -46,10 +46,12 @@ export default function Onboarding({ navigation }) {
           resizeMode="contain"
           source={require("./../assets/Logo.png")}
         />
+        
       </View>
       <View
         style={{
           alignItems: "center",
+          
           height: "70%",
           marginTop: 10,
           padding: 10,
