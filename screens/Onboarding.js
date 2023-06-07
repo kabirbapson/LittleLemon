@@ -39,6 +39,7 @@ export default function Onboarding({ navigation }) {
   };
 
   return (
+    
     <SafeAreaView style={{ backgroundColor: "#B2BEB5", flex: 1 }}>
       <View>
         <Image
@@ -51,7 +52,7 @@ export default function Onboarding({ navigation }) {
       <View
         style={{
           alignItems: "center",
-          
+
           height: "70%",
           marginTop: 10,
           padding: 10,
