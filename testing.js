@@ -1,10 +1,10 @@
 const fruits = ["cheese", "pie", "lunch", "breakfast"];
 const string = "i am really hungry for some";
-console.log(string);
-var really = string.search("really");
-console.log(really);
 
+function addNum(min, max) {
+  var range = max - min + 1;
+  var rand = Math.random();
+  return min + Math.floor(range * rand);
+}
 
-word = string.substr(really, 6);
-newString = string.replace(word, word.toUpperCase());
-console.log(newString);
+console.log(fruits[addNum(0, 3)]);
