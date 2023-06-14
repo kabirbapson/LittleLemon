@@ -11,3 +11,6 @@ function addNum(min, max) {
 
 console.log(fruits[addNum(0, 3)]);
 
+
+
+
