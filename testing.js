@@ -6,6 +6,7 @@ function addNum(min, max) {
   
   var range = max - min + 1;
 
+
   
   var rand = Math.random();
   
@@ -13,6 +14,7 @@ function addNum(min, max) {
 
   return min + Math.floor(range * rand);
 }
+
 
 
 console.log(fruits[addNum(0, 3)]);
