@@ -9,12 +9,13 @@ function addNum(min, max) {
 
 
 
-  
+
   
   var rand = Math.random();
   
 
 
+  
   return min + Math.floor(range * rand);
 }
 
