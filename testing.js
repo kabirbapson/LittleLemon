@@ -7,6 +7,9 @@ function addNum(min, max) {
   var range = max - min + 1;
 
 
+
+
+  
   
   var rand = Math.random();
   
