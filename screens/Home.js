@@ -14,20 +14,17 @@ import Feather from "@expo/vector-icons/Feather";
 import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("database.db");
 
-
 export default function Home({ navigation }) {
   const [user, setUser] = React.useState("");
   const [data, setData] = React.useState();
   const [pic, setPic] = React.useState("");
   const [text, setText] = React.useState("");
 
-  React.useEffect( async() => {
-    console.log(await AsyncStorage.getAllKeys())
-    console.log(await AsyncStorage.getItem('user'))
+  React.useEffect(async () => {
+    console.log(await AsyncStorage.getAllKeys());
+    console.log(await AsyncStorage.getItem("user"));
   }, []);
   React.useEffect(() => {}, []);
-  
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -51,7 +48,7 @@ export default function Home({ navigation }) {
             // right: 10,
           }}
         >
-          <Text >Web View</Text>
+          <Text>Web View</Text>
         </Button>
       </View>
     </SafeAreaView>
