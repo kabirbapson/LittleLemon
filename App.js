@@ -29,7 +29,15 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{ headerBackVisible: false, headerShown: false }}
       >
-        {isSignedIn ? (
+        <Stack.Screen
+              name="home"
+              options={{ title: "Home" }}
+              component={Home}
+            />
+        <Stack.Screen name="profile" component={Profile} />
+        <Stack.Screen name="onboarding" component={Onboarding} />
+        
+        {/* {isSignedIn ? (
           <>
             <Stack.Screen
               name="home"
@@ -43,7 +51,7 @@ export default function App() {
             <Stack.Screen name="onboarding" component={Onboarding} />
             </>
             
-        )}
+        )} */}
       </Stack.Navigator>
     </NavigationContainer>
   );
