@@ -9,9 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Home from "./screens/Home";
 const Stack = createNativeStackNavigator();
 
-
-
-
 export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -33,13 +30,13 @@ export default function App() {
         screenOptions={{ headerBackVisible: false, headerShown: false }}
       >
         <Stack.Screen
-              name="home"
-              options={{ title: "Home" }}
-              component={Home}
-            />
+          name="home"
+          options={{ title: "Home" }}
+          component={Home}
+        />
         <Stack.Screen name="profile" component={Profile} />
         <Stack.Screen name="onboarding" component={Onboarding} />
-        
+
         {/* {isSignedIn ? (
           <>
             <Stack.Screen
