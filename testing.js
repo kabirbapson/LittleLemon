@@ -1,6 +1,7 @@
 const fruits = ["cheese", "pie", "lunch", "breakfast"];
 const string = "i am really hungry for some";
 
+
 function addNum(min, max) {
   var range = max - min + 1;
 
@@ -10,6 +11,7 @@ function addNum(min, max) {
 
   return min + Math.floor(range * rand);
 }
+
 
 
 
