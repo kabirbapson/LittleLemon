@@ -13,7 +13,6 @@ export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-
     AsyncStorage.getItem("profile")
       .then((user) => {
         // console.log(user, "App");
